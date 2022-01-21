@@ -32,13 +32,12 @@ class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _textController = TextEditingController();
   bool _buttonEnabled = false;
   String? _initialValue;
-  bool _firstLoad = true;
 
   @override
   void initState() {
     super.initState();
     _textController.addListener(() {
-      if (!_firstLoad) {
+      if (_initialValue != null) {
         final bool updatedValue = _textController.text != _initialValue;
         if (updatedValue != _buttonEnabled) {
           setState(() {
@@ -69,11 +68,10 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FutureBuilder<String>(
           future: _getString(),
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (_firstLoad && snapshot.hasData) {
+            if (_initialValue == null && snapshot.hasData) {
               final data = snapshot.requireData;
               _initialValue = data;
               _textController.text = data;
-              _firstLoad = false;
             }
             return Center(
               child: Column(
