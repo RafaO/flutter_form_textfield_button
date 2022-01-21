@@ -39,9 +39,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _textController.addListener(() {
       if (!_firstLoad) {
-        setState(() {
-          _buttonEnabled = _textController.text != _initialValue;
-        });
+        final bool updatedValue = _textController.text != _initialValue;
+        if (updatedValue != _buttonEnabled) {
+          setState(() {
+            _buttonEnabled = _textController.text != _initialValue;
+          });
+        }
       }
     });
   }
