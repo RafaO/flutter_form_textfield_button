@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   TextField(
                     controller: _textController,
                     style: Theme.of(context).textTheme.headline4,
+                    enabled: snapshot.hasData,
                   ),
                   TextButton(
                     child: const Text("Save changes"),
