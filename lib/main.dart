@@ -29,18 +29,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  TextEditingController textController = TextEditingController();
-  bool buttonEnabled = false;
-  String? initialValue;
-  bool firstLoad = true;
+  final TextEditingController _textController = TextEditingController();
+  bool _buttonEnabled = false;
+  String? _initialValue;
+  bool _firstLoad = true;
 
   @override
   void initState() {
     super.initState();
-    textController.addListener(() {
-      if (!firstLoad) {
+    _textController.addListener(() {
+      if (!_firstLoad) {
         setState(() {
-          buttonEnabled = textController.text != initialValue;
+          _buttonEnabled = _textController.text != _initialValue;
         });
       }
     });
@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    textController.dispose();
+    _textController.dispose();
     super.dispose();
   }
 
@@ -66,23 +66,23 @@ class _MyHomePageState extends State<MyHomePage> {
       body: FutureBuilder<String>(
           future: _getString(),
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (firstLoad && snapshot.hasData) {
+            if (_firstLoad && snapshot.hasData) {
               final data = snapshot.requireData;
-              initialValue = data;
-              textController.text = data;
-              firstLoad = false;
+              _initialValue = data;
+              _textController.text = data;
+              _firstLoad = false;
             }
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   TextField(
-                    controller: textController,
+                    controller: _textController,
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   TextButton(
                     child: const Text("Save changes"),
-                    onPressed: buttonEnabled ? () {} : null,
+                    onPressed: _buttonEnabled ? () {} : null,
                   )
                 ],
               ),
