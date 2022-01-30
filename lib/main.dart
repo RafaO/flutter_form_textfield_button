@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:other/form.dart';
+import 'package:other/form/form.dart';
+import 'package:other/form/form_content.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => FormContent())],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
