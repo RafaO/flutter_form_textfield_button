@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:other/form/form_content.dart';
+import 'package:other/form_provider/form_content.dart';
 import 'package:provider/provider.dart';
 
 class FormWidget extends StatefulWidget {

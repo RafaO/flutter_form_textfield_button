@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:other/form/form.dart';
-import 'package:other/form/form_content.dart';
+import 'package:other/form_basic/form_basic_widget.dart';
+import 'package:other/form_provider/form.dart';
+import 'package:other/form_provider/form_content.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -38,7 +39,17 @@ class MyHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         children: <Widget>[
           ListTile(
-            title: const Text('Form'),
+            title: const Text('Form basic'),
+            onTap: () {
+              Navigator.of(context).push<void>(
+                MaterialPageRoute<void>(
+                  builder: (BuildContext context) => const FormBasicWidget(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Form provider'),
             onTap: () {
               Navigator.of(context).push<void>(
                 MaterialPageRoute<void>(
